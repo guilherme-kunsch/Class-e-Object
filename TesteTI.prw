@@ -1,5 +1,5 @@
 #Include "Protheus.ch"
 
 User Function TesteTI()
-    U_ArquivoTXT()
+    U_ArquivoCSV()
 Return

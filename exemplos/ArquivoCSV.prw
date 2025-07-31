@@ -1,13 +1,13 @@
 #Include "Protheus.ch"
 
 /*/{Protheus.doc} TXT
-Como lidar com arquivos TXT.
+Como lidar com arquivos CSV.
 @author Guilherme Kunsch
-@since  30/07/2025
+@since  31/07/2025
 @version 12/Superior
 /*/
 
-User Function ArquivoTXT()
+User Function ArquivoCSV()
     Local aPergs    := {}
     Local aResps    := {}
     Local cTitulo   := "Operando arquivos TXT"
@@ -39,17 +39,27 @@ Return
 /*/{Protheus.doc} xReadArq
 Leitura de arquivo de dado
 @author Guilherme Kunsch
-@since 30/07/2025
+@since 31/07/2025
 /*/
 
 Static Function xReadArq(cArquivo)
     Local nHandle   := -1
     Local cLinha    := ""
+    Local aCabec    := {}
+    Local aDados    := {}
+    Local lLinPrim  := .T.
 
     nHandle := ft_fUse(cArquivo)
     If nHandle > 0 
         While ! ft_fEOF()
             cLinha := ft_fReadln()
+            If lLinPrim 
+                aCabec := Separa(cLinha, ";")
+                lLinPrim := .F.
+            Else
+                aDados := Separa(cLinha, ";")
+                xProcessa(aDados)
+            EndIf
             ft_fSkip()
         EndDo
     EndIf
