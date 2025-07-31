@@ -2,7 +2,6 @@
 
 /*/{Protheus.doc} TXT
 Como lidar com arquivos TXT.
-
 @author Guilherme Kunsch
 @since  30/07/2025
 @version 12/Superior
@@ -14,16 +13,25 @@ User Function ArquivoTXT()
     Local cTitulo   := "Operando arquivos TXT"
     Local cArquivo  := ""
 
-    aAdd(aPergs, {"Informe o arquivo:", "", "", "", "", 50, .T., "Arquivos .TXT |*.TXT", "", GETF_LOCALHARD+GETF_NETWORKDRIVE})
+    aAdd(aPergs, {6, ;
+        "Informe o arquivo:" , ; 
+        "",                     ; 
+        9,                      ; 
+        50,                     ; 
+        .T.,                    ; 
+        "Arquivos .TXT |*.TXT", ;
+        "",                     ; 
+        GETF_LOCALHARD + GETF_NETWORKDRIVE ;
+    })
 
-    If Parambox(aPergs, cTitulo, @aResps)
-        cArquivo := allTrim(aResps[1])
+    If ParamBox(aPergs, cTitulo, @aResps)
+        cArquivo := AllTrim(aResps[1])
         If File(cArquivo)
             xReadArq(@cArquivo)
         Else
             Help(,, "Help",,, "Caminho do arquivo a ser importado é inválido", 1, 0,,,,, .F., {"Verifique se o arquivo está correto!"} )
-        EndIF
-    EndIF
+        EndIf
+    EndIf
 Return
 
 /*/{Protheus.doc} xReadArq
@@ -43,4 +51,6 @@ Static Function xReadArq(cArquivo)
             ft_fSkip()
         EndDo
     EndIf
+
+    fClose(nHandle)
 Return
