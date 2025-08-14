@@ -24,6 +24,21 @@
 		},
 		{
 			"label": "SIGAMDI"
+		},
+		{
+			"label": "SIGFAT"
+		},
+		{
+			"label": "U_Jogos"
+		},
+		{
+			"label": "U_zModel1"
+		},
+		{
+			"label": "U_xMBrowse"
+		},
+		{
+			"label": "U_zMVC01"
 		}
 	],
 	"lastProgramExecuted": "sigafat"
